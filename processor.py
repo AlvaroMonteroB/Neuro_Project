@@ -37,7 +37,7 @@ class Processor():
         if not self.batch_mode:
             self.raw_data_batch.append(raw_data)
             if len(self.raw_data_batch)>=self.data_res and self.is_open:
-                self._init_thread(target=self)#Aqui llamamos a la fft para descomponer los dstos
+                self._init_thread(target=self._fft)#Aqui llamamos a la fft para descomponer los dstos
                 
     def _fft(self):
         temp_data_batch=self.raw_data_batch.copy
