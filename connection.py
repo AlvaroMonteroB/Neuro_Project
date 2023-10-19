@@ -20,6 +20,7 @@ class connector():
         self.subscriptions.append(self.poor_signal_level)
         self.sampling_rate = Subject()
         self.subscriptions.append(self.sampling_rate)
+        self.json_text=Subject()
         
       
 
@@ -73,6 +74,7 @@ class connector():
                     self.sampling_rate_counter=+1
                     try:
                         json_data=loads(data)
+                        self.json_text.on_next(json_data)#Para ver que trae el json completo
                         try:
                             temp_data=json_data['rawEeg']
                             
@@ -88,10 +90,7 @@ class connector():
                     print("Poor signal connection")
         except:
             self.close()
-                
-
-
-        self.server_socket.close()
+            
         
     
 

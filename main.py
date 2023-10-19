@@ -24,6 +24,9 @@ sub=Real_time_graph.subscribe(vect_data.handler)#Datos para plotear
 
 process.data.subscribe(vect_transformed.handler)#A los datos transformados los mando a otro vector
 
+
+connection_.json_text.subscribe(print)#Imprimir lo que trae el json
+
 cn.sleep(1)#Dejamos que se ejecute el hilo por n segundos
 connection_.close()#Cerramos las conexiones
 process.close()

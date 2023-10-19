@@ -1,6 +1,5 @@
 from rx.subject import Subject 
 import threading
-import connection
 import numpy as np
 import matplotlib.pyplot as plt
 class Data_handler:
