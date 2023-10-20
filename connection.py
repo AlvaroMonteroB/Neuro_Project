@@ -21,6 +21,8 @@ class connector():
         self.sampling_rate = Subject()
         self.subscriptions.append(self.sampling_rate)
         self.json_text=Subject()
+        self.attention_level=Subject()
+        self.meditation_level=Subject()
         
       
 

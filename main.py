@@ -25,9 +25,12 @@ sub=Real_time_graph.subscribe(vect_data.handler)#Datos para plotear
 process.data.subscribe(vect_transformed.handler)#A los datos transformados los mando a otro vector
 
 
-connection_.json_text.subscribe(print)#Imprimir lo que trae el json
+#connection_.json_text.subscribe(print)#Imprimir lo que trae el json
+#{'eSense': {'attention': 50, 'meditation': 27}, 'eegPower': 
+# {'delta': 179805, 'theta': 18760, 'lowAlpha': 12543, 'highAlpha': 5206, 'lowBeta': 2037, 'highBeta': 1401, 'lowGamma': 3498,
+# 'highGamma': 3660}, 'poorSignalLevel': 0}
 
-cn.sleep(1)#Dejamos que se ejecute el hilo por n segundos
+cn.sleep(2)#Dejamos que se ejecute el hilo por n segundos
 connection_.close()#Cerramos las conexiones
 process.close()
 sub.dispose()
@@ -40,8 +43,9 @@ plt.show()
 
 print(str(np.shape(vect_transformed.raw_data)))#Resultado de fft
 tr=np.transpose(vect_transformed.raw_data)
-plt.plot(tr)
-plt.show
+for vectr in range(np.shape(tr)[0]):
+    plt.plot(tr[vectr])
+    plt.show()
 
 
 
