@@ -21,6 +21,7 @@ transform_data.connect()
 transform_data.subscribe(process.add_data)#Datos para aplicarles fft
 sub=Real_time_graph.subscribe(vect_data.handler)#Datos para plotear
 
+connection_.attention_level.subscribe(print)#Subcripcion a nivel de atencion
 
 process.data.subscribe(vect_transformed.handler)#A los datos transformados los mando a otro vector
 
@@ -34,6 +35,11 @@ cn.sleep(2)#Dejamos que se ejecute el hilo por n segundos
 connection_.close()#Cerramos las conexiones
 process.close()
 sub.dispose()
+
+
+
+
+
 
 print(str(len(vect_data.raw_data)))#Generamos el grafico de los datos sin procesar
 x=np.arange(0,len(vect_data.raw_data))

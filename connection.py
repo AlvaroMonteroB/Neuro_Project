@@ -27,7 +27,7 @@ class connector():
       
 
         self.server_socket=socket.socket(
-            family=socket.AF_INET, type=socket.SOCK_STREAM, proto=socket.IPPROTO_TCP)
+            )
         
         self._init_thread(target=self.generate_data)
         
@@ -79,6 +79,8 @@ class connector():
                         self.json_text.on_next(json_data)#Para ver que trae el json completo
                         try:
                             temp_data=json_data['rawEeg']
+                            attention=json_data['attention']
+                            self.attention_level.on_next(attention)#Datos de atencion
                             
                             self.data.on_next(temp_data)#Aqui se guardan los datos crudos
                         except:
