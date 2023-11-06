@@ -4,18 +4,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 import handler
 from rx import operators as ops
-connection_=cn.connector()
-process=processor.Processor()
+connection_=cn.connector()#Conexion y adquisicion de datos      
+process=processor.Processor()#Procesar señal en tiempo real
 
 
-vect_data=handler.Data_handler()
+vect_data=handler.Data_handler()#Objetos de manejo 
 vect_transformed=handler.Data_handler()
 
 
-Real_time_graph=connection_.data.pipe(ops.publish())
+Real_time_graph=connection_.data.pipe(ops.publish())#Conexion a los datos
 transform_data=connection_.data.pipe(ops.publish())
 
-Real_time_graph.connect()
+Real_time_graph.connect()#Conectar los observadores para recibir datos en tiempo real
 transform_data.connect()
 
 transform_data.subscribe(process.add_data)#Datos para aplicarles fft
@@ -31,7 +31,7 @@ process.data.subscribe(vect_transformed.handler)#A los datos transformados los m
 # {'delta': 179805, 'theta': 18760, 'lowAlpha': 12543, 'highAlpha': 5206, 'lowBeta': 2037, 'highBeta': 1401, 'lowGamma': 3498,
 # 'highGamma': 3660}, 'poorSignalLevel': 0}
 
-cn.sleep(2)#Dejamos que se ejecute el hilo por n segundos
+cn.sleep(4)#Dejamos que se ejecute el hilo por n segundos
 connection_.close()#Cerramos las conexiones
 process.close()
 sub.dispose()
