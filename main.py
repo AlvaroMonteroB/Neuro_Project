@@ -3,6 +3,7 @@ import processor
 import numpy as np
 import matplotlib.pyplot as plt
 import handler
+import unity_connection as uc
 from rx import operators as ops
 connection_=cn.connector()#Conexion y adquisicion de datos      
 process=processor.Processor()#Procesar señal en tiempo real
@@ -21,7 +22,10 @@ transform_data.connect()
 transform_data.subscribe(process.add_data)#Datos para aplicarles fft
 sub=Real_time_graph.subscribe(vect_data.handler)#Datos para plotear
 
-connection_.attention_level.subscribe(print)#Subcripcion a nivel de atencion
+
+unity=uc.unity_conector()
+
+connection_.attention_level.subscribe(unity.add_data)#Subcripcion a nivel de atencion
 
 process.data.subscribe(vect_transformed.handler)#A los datos transformados los mando a otro vector
 
