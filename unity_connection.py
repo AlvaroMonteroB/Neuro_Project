@@ -1,5 +1,6 @@
 import socket
 import threading
+from json import dumps
 
 
 class unity_conector:
@@ -19,6 +20,8 @@ class unity_conector:
         self.cons_data.append(data)
         self._init_thread(target=self.transfer_data)
         
-    def transfer_data(self,data_tuple):
-        self.server_socket.sendto(str(self.cons_data))#Enviar concentracion y mano
+    def transfer_data(self):
+        data_str=dumps(self.cons_data)
+        self.server_socket.sendto(data_str.encode())#Enviar concentracion 
+        self.cons_data=[]
         
